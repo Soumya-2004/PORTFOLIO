@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bharatha Soumya | Portfolio</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4F46E5',
+            secondary: '#8B5CF6',
+            background: '#F3F4F6',
+            dark: '#1F2937'
+          },
+          borderRadius: {
+            button: '10px'
+          }
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1F2937;
+      background-color: #F3F4F6;
+      scroll-behavior: smooth;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Playfair Display', serif;
+    }
+    .nav-link::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 2px;
+      background: #4F46E5;
+      transition: width .3s;
+    }
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    .typing-animation::after {
+      content: '|';
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .button-gradient {
+      background: linear-gradient(to right, #4F46E5, #8B5CF6);
+    }
+    .project-card {
+      overflow: hidden;
+      position: relative;
+    }
+    .project-card:hover .overlay {
+      opacity: 1;
+    }
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(79, 70, 229, 0.8);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-align: center;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+
+<!-- Navigation -->
+
+<nav id="navbar" class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md transition-shadow duration-300">
+  <div class="w-full px-6 py-4 flex justify-between items-center">
+    <!-- Logo Brand aligned with page content start -->
+    <div class="flex items-center space-x-3 text-primary font-semibold text-xl">
+      <a href="#home" class="flex items-center space-x-3">
+        <div class="w-10 h-10 bg-primary text-white flex items-center justify-center rounded-full shadow-md font-bold">BS</div>
+        <span class="hidden sm:inline-block tracking-wide">Bharatha Soumya</span>
+      </a>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="hidden md:flex space-x-6 text-sm font-medium">
+      <a href="#home" class="nav-link text-gray-700 hover:text-primary">Home</a>
+      <a href="#about" class="nav-link text-gray-700 hover:text-primary">About</a>
+      <a href="#projects" class="nav-link text-gray-700 hover:text-primary">Projects</a>
+      <a href="#skills" class="nav-link text-gray-700 hover:text-primary">Skills</a>
+      <a href="#contact" class="nav-link text-gray-700 hover:text-primary">Contact</a>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="hidden md:flex items-center space-x-4">
+      <a href="https://github.com/Soumya-2004" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-black">
+        <i class="ri-github-fill text-2xl"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/soumya-bharatha-a38633330/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600">
+        <i class="ri-linkedin-box-fill text-2xl"></i>
+      </a>
+    </div>
+
+    <!-- Mobile Icon -->
+    <div class="md:hidden">
+      <button id="mobile-toggle" class="text-gray-700">
+        <i class="ri-menu-3-line text-2xl"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Optional: Mobile Menu -->
+<div id="mobile-menu" class="hidden md:hidden fixed top-16 left-0 w-full bg-white shadow-md py-4 px-6 z-50">
+  <a href="#home" class="block py-2 text-gray-800 hover:text-primary">Home</a>
+  <a href="#about" class="block py-2 text-gray-800 hover:text-primary">About</a>
+  <a href="#projects" class="block py-2 text-gray-800 hover:text-primary">Projects</a>
+  <a href="#skills" class="block py-2 text-gray-800 hover:text-primary">Skills</a>
+  <a href="#contact" class="block py-2 text-gray-800 hover:text-primary">Contact</a>
+  <div class="flex space-x-4 pt-4">
+    <a href="https://github.com/Soumya-2004" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-black">
+      <i class="ri-github-fill text-2xl"></i>
+    </a>
+    <a href="https://www.linkedin.com/in/soumya-bharatha-a38633330/" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-blue-600">
+      <i class="ri-linkedin-box-fill text-2xl"></i>
+    </a>
+  </div>
+</div>
+
+<script>
+  // Toggle mobile nav
+  document.getElementById('mobile-toggle').addEventListener('click', () => {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('hidden');
+  });
+
+  // Shadow on scroll
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 20) {
+      navbar.classList.add('shadow-lg');
+    } else {
+      navbar.classList.remove('shadow-lg');
+    }
+  });
+</script>
+
+
+
+<!-- Particles + Lottie Background Hero -->
+<section id="home" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#f1f1f7] via-[#f7eaff] to-[#dceeff] overflow-hidden">
+  <div id="particles-js" class="absolute inset-0 z-0"></div>
+  <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-0 opacity-30">
+    <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_jcikwtux.json" background="transparent" speed="1" style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+  </div>
+  <div class="relative z-10 text-center px-6">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4 font-['Playfair_Display']">Hi, I'm <span class="text-primary"> Bharatha Soumya</span></h1>
+    <p class="text-xl text-gray-700 mb-6 typing-animation" id="typing-text"></p>
+    <div class="flex justify-center gap-4">
+      <a href="#contact" class="px-6 py-3 bg-primary text-white rounded-button shadow-md hover:shadow-lg transition-all">Contact Me</a>
+      <a href="#projects" class="px-6 py-3 border-2 border-primary text-primary rounded-button hover:bg-primary/10 transition-all">My Work</a>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script>
+  particlesJS("particles-js", {
+    particles: {
+      number: { value: 50, density: { enable: true, value_area: 800 } },
+      color: { value: "#a78bfa" },
+      shape: { type: "circle" },
+      opacity: { value: 0.25 },
+      size: { value: 3, random: true },
+      line_linked: { enable: true, distance: 150, color: "#c084fc", opacity: 0.2, width: 1 },
+      move: { enable: true, speed: 1.8, direction: "none", random: false, straight: false, out_mode: "out" }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: {
+        onhover: { enable: true, mode: "repulse" },
+        onclick: { enable: true, mode: "push" },
+        resize: true
+      },
+      modes: {
+        repulse: { distance: 100, duration: 0.4 },
+        push: { particles_nb: 4 }
+      }
+    },
+    retina_detect: true
+  });
+</script>
+
+
+
+
+
+
+
+
+<!-- Hero Section with Graphics -->
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- JavaScript -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const typingText = document.getElementById('typing-text');
+    const text = "Problem Solver | UI/UX Enthusiast | ML Engineer | Frontend Developer";
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        typingText.textContent = text.substring(0, i + 1);
+        i++;
+        setTimeout(typeWriter, 60);
+      }
+    }
+    typeWriter();
+  });
+</script>
+
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-[#F8F8F8]">
+  <div class="container mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold mb-16 font-['Playfair_Display']">About Me</h2>
+    <div class="flex flex-col md:flex-row">
+      <div class="md:w-1/2 pr-0 md:pr-12 mb-10 md:mb-0">
+        <p class="text-lg leading-relaxed mb-6">
+          I'm a final-year B.Tech CSE (AIML) student at SR University, graduating in 2026. I'm deeply passionate about coding, solving complex problems, and continuously learning. My current focus is on becoming a skilled developer and securing a position at a top product-based company.
+        </p>
+        <p class="text-lg leading-relaxed mb-6">
+          With a strong foundation in Artificial Intelligence and Machine Learning, I've developed projects ranging from lane detection systems to comprehensive data analysis tools. Recently, I've been expanding into UI/UX design to blend functionality with aesthetics.
+        </p>
+        <p class="text-lg leading-relaxed mb-6">
+          I believe in the power of technology to solve real-world problems and am constantly seeking opportunities to apply my knowledge in meaningful ways.
+        </p>
+        <a href="https://drive.google.com/file/d/1FgW37UE4l862pm6wzQzUfyXCsRdPrlR_/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="mt-4 inline-block px-6 py-2 bg-primary text-white rounded-button shadow hover:shadow-md transition">View Resume</a>
+      </div>
+      <div class="md:w-1/2 pl-0 md:pl-12 relative">
+        <h3 class="text-2xl font-bold mb-8 font-['Playfair_Display']">Education</h3>
+        <div class="pl-10 space-y-10">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 font-['Playfair_Display']">SR University</h4>
+            <p class="text-gray-600 mb-2">B.Tech CSE (AIML), 2022–2026</p>
+            <p class="text-gray-700">Focusing on Artificial Intelligence and Machine Learning with coursework in Data Structures, Algorithms, and Deep Learning.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 font-['Playfair_Display']">SR Junior College</h4>
+            <p class="text-gray-600 mb-2">Intermediate, 2020-2022</p>
+            <p class="text-gray-700">Specialized in Mathematics, Physics, and Computer Science with distinction.</p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 font-['Playfair_Display']">Nagarjuna High School</h4>
+            <p class="text-gray-600 mb-2">Schooling, 2018-2020</p>
+            <p class="text-gray-700">Developed strong foundation in sciences and mathematics, participated in coding competitions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Projects Section -->
+
+<section id="projects" class="py-20">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold mb-16 section-title font-['Playfair_Display']">My Projects</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+<!-- Project 1 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-md project-card">
+<div class="relative h-60">
+<img src="https://readdy.ai/api/search-image?query=car%20lane%20detection%20system%20visualization%20with%20neural%20networks%2C%20showing%20a%20road%20with%20detected%20lane%20markings%20highlighted%20in%20blue%20and%20green%2C%20computer%20vision%20dashboard%20with%20metrics%20and%20data%20visualization%2C%20high-tech%20interface%2C%20professional%20machine%20learning%20application&width=600&height=400&seq=3&orientation=landscape" alt="Lane Detection Project" class="w-full h-full object-cover object-top">
+<div class="overlay absolute inset-0 bg-primary/80 flex items-center justify-center p-6">
+<div class="text-white text-center">
+<p class="text-lg font-semibold mb-2">A CNN-based lane detection system using OpenCV for real-time road analysis</p>
+<p>Implemented with PyTorch and tested on the CULane dataset</p>
+</div>
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2 font-['Playfair_Display']">NITW_PROJECT_LANE (CULane)</h3>
+<p class="text-gray-700 mb-4">Lane Detection using CNN and OpenCV for autonomous driving applications</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">Python</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">PyTorch</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">OpenCV</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">CNN</span>
+</div>
+<button class="px-4 py-2 bg-primary text-white rounded-button hover:shadow-lg transition-all whitespace-nowrap">View Details</button>
+</div>
+</div>
+
+<!-- Project 2 -->
+
+<div class="bg-white rounded-lg overflow-hidden shadow-md project-card">
+<div class="relative h-60">
+<img src="https://readdy.ai/api/search-image?query=data%20visualization%20dashboard%20showing%20multimodal%20data%20analysis%20with%20charts%2C%20graphs%2C%20and%20image%20processing%20results%2C%20professional%20UI%20with%20clean%20design%2C%20showing%20CSV%20data%20tables%2C%20image%20analysis%2C%20and%20text%20processing%20results%20in%20a%20unified%20interface&width=600&height=400&seq=4&orientation=landscape" alt="Unified Data Insights Project" class="w-full h-full object-cover object-top">
+<div class="overlay absolute inset-0 bg-primary/80 flex items-center justify-center p-6">
+<div class="text-white text-center">
+<p class="text-lg font-semibold mb-2">A comprehensive tool for analyzing multiple data types in a unified framework</p>
+<p>Processes CSV, image, and text data using various ML and DL techniques</p>
+</div>
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2 font-['Playfair_Display']">Unified Data Insights</h3>
+<p class="text-gray-700 mb-4">Multimodal dataset analysis using ML & DL techniques</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">Python</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">scikit-learn</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">TensorFlow</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">NLP</span>
+</div>
+<button class="px-4 py-2 bg-primary text-white rounded-button hover:shadow-lg transition-all whitespace-nowrap">View Details</button>
+</div>
+</div>
+
+<!-- Project 3 -->
+ 
+<div class="bg-white rounded-lg overflow-hidden shadow-md project-card">
+<div class="relative h-60">
+<img src="https://readdy.ai/api/search-image?query=water%20quality%20analysis%20dashboard%20with%20machine%20learning%20visualizations%2C%20showing%20comparison%20charts%20of%20different%20ML%20algorithms%20like%20Random%20Forest%2C%20SVM%2C%20and%20XGBoost%2C%20with%20water%20sample%20data%20and%20prediction%20accuracy%20metrics%2C%20professional%20scientific%20visualization&width=600&height=400&seq=5&orientation=landscape" alt="Water Potability Analysis Project" class="w-full h-full object-cover object-top">
+<div class="overlay absolute inset-0 bg-primary/80 flex items-center justify-center p-6">
+<div class="text-white text-center">
+<p class="text-lg font-semibold mb-2">A comparative study of ML algorithms for water quality prediction</p>
+<p>Evaluated Random Forest, SVM, XGBoost and other algorithms</p>
+</div>
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2 font-['Playfair_Display']">Water Potability Analysis</h3>
+<p class="text-gray-700 mb-4">Comparative ML study using multiple algorithms</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">Python</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">Random Forest</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">SVM</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">XGBoost</span>
+</div>
+<button class="px-4 py-2 bg-primary text-white rounded-button hover:shadow-lg transition-all whitespace-nowrap">View Details</button>
+</div>
+</div>
+<!-- Project 4 -->
+<div class="bg-white rounded-lg overflow-hidden shadow-md project-card">
+<div class="relative h-60">
+<img src="https://readdy.ai/api/search-image?query=modern%20UI%2FUX%20design%20for%20a%20mobile%20application%2C%20showing%20wireframes%2C%20color%20palette%20selection%2C%20and%20user%20flow%20diagrams%2C%20professional%20design%20tools%20interface%20with%20prototype%20screens%20and%20user%20testing%20results%2C%20clean%20and%20minimal%20design%20approach&width=600&height=400&seq=6&orientation=landscape" alt="UI/UX Design Project" class="w-full h-full object-cover object-top">
+<div class="overlay absolute inset-0 bg-primary/80 flex items-center justify-center p-6">
+<div class="text-white text-center">
+<p class="text-lg font-semibold mb-2">A personal exploration project into UI/UX design principles</p>
+<p>Created wireframes and prototypes for a mobile application</p>
+</div>
+</div>
+</div>
+<div class="p-6">
+<h3 class="text-xl font-bold mb-2 font-['Playfair_Display']">UI/UX Design Exploration</h3>
+<p class="text-gray-700 mb-4">Learning journey into human-centered design principles</p>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">Figma</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">Adobe XD</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">Wireframing</span>
+<span class="px-3 py-1 bg-[#E0BBE4] text-gray-800 rounded-full text-sm">Prototyping</span>
+</div>
+<button class="px-4 py-2 bg-primary text-white rounded-button hover:shadow-lg transition-all whitespace-nowrap">View Details</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+<!-- Experience -->
+
+
+<section id="experience" class="py-20 bg-background">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-left text-dark mb-12">Experience</h2>
+    <div class="bg-white rounded-xl shadow-md p-6">
+      <h3 class="text-2xl font-semibold text-primary mb-2">National Institute of Technology, Warangal (Internship)</h3>
+      <p class="text-gray-600 mb-2 italic">June 2024 – July 2024 • Telangana, India</p>
+      <ul class="list-disc list-inside text-gray-700 space-y-2">
+        <li>Worked on Lane Detection using Deep Learning models like YOLO and SCNN under the esteemed guidance of Dr. Ilaiah Kavati Sir.</li>
+        <li>Gained deeper understanding in Data Collection, Model Development, Algorithm Evaluation, Team Collaboration, and Documentation.</li>
+      </ul>
+        <a href="https://drive.google.com/file/d/1klf6VO4z3OWokN6bYSSPde_xXgtUWI9E/view" target="_blank" rel="noopener noreferrer" class="inline-block mt-4 px-5 py-2 bg-primary text-white font-medium rounded-button hover:bg-primary/90 transition-all">Certificate</a>
+    </div>
+  </div>
+</section>
+
+<!-- skills -->
+<style>
+  .skill-tooltip:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+</style>
+
+<section id="skills" class="py-20 bg-background">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-4xl font-bold text-left text-dark mb-16">My Skills</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Languages -->
+      <div class="bg-[#C0D9EE]/30 p-6 rounded-xl shadow-lg relative skill-tooltip hover:scale-105 transition-transform" data-tooltip="Languages I code in">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="w-12 h-12 bg-primary/10 text-primary flex items-center justify-center bg-[#C0D9EE] rounded-full">
+            <i class="ri-code-line ri-lg"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-black">Languages</h3>
+        </div>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-sm">
+              <span>Python</span>
+              <span>90%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div class="bg-primary h-2.5 rounded-full" style="width:90%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm">
+              <span>C</span>
+              <span>75%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div class="bg-primary h-2.5 rounded-full" style="width:75%"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-sm">
+              <span>Java</span>
+              <span>70%</span>
+            </div>
+            
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+              <div class="bg-primary h-2.5 rounded-full" style="width:70%"></div>
+            </div>
+            </div>
+            <div>
+            <div class="flex justify-between mb-1">
+            <span class="text-gray-700">SQL</span>
+            <span class="text-gray-600">80%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-primary h-2.5 rounded-full" style="width:80%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Frameworks/Tools -->
+      <div class="bg-[#E0BBE4]/30 p-6 rounded-xl shadow-lg relative skill-tooltip hover:scale-105 transition-transform" data-tooltip="Libraries & platforms I use">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="w-12 h-12 bg-secondary/10 text-secondary flex items-center justify-center rounded-full">
+            <i class="ri-tools-line text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-black whitespace-nowrap">Frameworks/Tools</h3>
+        </div>
+        <div class="space-y-4">
+          <div class="flex justify-between text-sm">
+            <span>PyTorch</span><span>85%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-secondary h-2.5 rounded-full" style="width:85%"></div>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span>OpenCV</span><span>80%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-secondary h-2.5 rounded-full" style="width:80%"></div>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span>scikit-learn</span><span>85%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-secondary h-2.5 rounded-full" style="width:85%"></div>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span>Google Colab</span><span>90%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-secondary h-2.5 rounded-full" style="width:90%"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Specialties -->
+      <div class="bg-[#D0EEDC]/30 p-6 rounded-xl shadow-lg relative skill-tooltip hover:scale-105 transition-transform" data-tooltip="My expertise areas">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="w-12 h-12 bg-green-100 text-green-500 flex items-center justify-center rounded-full">
+            <i class="ri-brain-line text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-black">Specialties</h3>
+        </div>
+        <div class="space-y-4">
+          <div class="flex justify-between text-sm">
+            <span>Machine Learning</span><span>85%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-green-400 h-2.5 rounded-full" style="width:85%"></div>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span>Deep Learning</span><span>80%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-green-400 h-2.5 rounded-full" style="width:80%"></div>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span>Data Structures</span><span>75%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-green-400 h-2.5 rounded-full" style="width:75%"></div>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span>Problem Solving</span><span>85%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-green-400 h-2.5 rounded-full" style="width:85%"></div>
+          </div>
+        </div>
+      </div>
+      <!-- Currently Learning -->
+      <div class="bg-[#E6D3ED]/30 p-6 rounded-xl shadow-lg relative skill-tooltip hover:scale-105 transition-transform" data-tooltip="What I'm exploring now">
+        <div class="flex items-center space-x-3 mb-6">
+          <div class="w-12 h-12 bg-pink-100 text-pink-500 flex items-center justify-center rounded-full">
+            <i class="ri-book-open-line text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold text-black">Currently Learning</h3>
+        </div>
+        <div class="space-y-4">
+          <div class="flex justify-between text-sm">
+            <span>UI/UX Design</span><span>60%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-pink-400 h-2.5 rounded-full" style="width:60%"></div>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span>Figma</span><span>55%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-pink-400 h-2.5 rounded-full" style="width:55%"></div>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span>Web Development</span><span>50%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-pink-400 h-2.5 rounded-full" style="width:50%"></div>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span>React</span><span>40%</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-pink-400 h-2.5 rounded-full" style="width:40%"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- Modal Popup -->
+<div id="projectModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden justify-center items-center z-50">
+  <div class="bg-white rounded-lg shadow-lg max-w-xl w-full p-6 relative">
+    <button id="closeModal" class="absolute top-2 right-4 text-gray-500 hover:text-red-500 text-xl">&times;</button>
+    <div id="modalContent">
+      <!-- Dynamic content will be injected here -->
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.project-card button').forEach(button => {
+    button.addEventListener('click', function () {
+      const card = this.closest('.project-card');
+      const title = card.querySelector('h3').textContent;
+      const desc = card.querySelector('p').textContent;
+      const modal = document.getElementById('projectModal');
+      const content = `<h3 class='text-2xl font-bold mb-2'>${title}</h3><p class='text-gray-700'>${desc}</p>`;
+      document.getElementById('modalContent').innerHTML = content;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    });
+  });
+  document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('projectModal').classList.add('hidden');
+  });
+</script>
+
+<!-- Responsive Filter Controls (Coming Soon) -->
+<!-- <div class="flex flex-wrap justify-center gap-4 mb-10">
+  <button class="px-4 py-2 rounded bg-primary text-white">All</button>
+  <button class="px-4 py-2 rounded bg-gray-100 text-dark hover:bg-primary hover:text-white transition">ML</button>
+  <button class="px-4 py-2 rounded bg-gray-100 text-dark hover:bg-primary hover:text-white transition">Web</button>
+  <button class="px-4 py-2 rounded bg-gray-100 text-dark hover:bg-primary hover:text-white transition">UI</button>
+</div> -->
+
+
+
+<!-- Contact Section -->
+
+
+<section id="contact" class="py-20">
+<div class="container mx-auto px-6">
+<h2 class="text-3xl md:text-4xl font-bold mb-16 section-title font-['Playfair_Display']">Get In Touch</h2>
+<div class="flex flex-col md:flex-row gap-10">
+<div class="md:w-1/2">
+<form id="contact-form" class="space-y-6">
+<div>
+<label for="name" class="block text-gray-700 mb-2">Your Name</label>
+<input type="text" id="name" class="w-full px-4 py-3 bg-[#F8F8F8] rounded form-input" placeholder="John Doe" required>
+</div>
+<div>
+<label for="email" class="block text-gray-700 mb-2">Your Email</label>
+<input type="email" id="email" class="w-full px-4 py-3 bg-[#F8F8F8] rounded form-input" placeholder="john@example.com" required>
+</div>
+<div>
+<label for="subject" class="block text-gray-700 mb-2">Subject</label>
+<input type="text" id="subject" class="w-full px-4 py-3 bg-[#F8F8F8] rounded form-input" placeholder="Project Inquiry">
+</div>
+<div>
+<label for="message" class="block text-gray-700 mb-2">Your Message</label>
+<textarea id="message" rows="5" class="w-full px-4 py-3 bg-[#F8F8F8] rounded form-input" placeholder="Hello, I'd like to discuss a project..." required></textarea>
+</div>
+<div class="flex items-center gap-2">
+<div id="subscribe-checkbox" class="custom-checkbox"></div>
+<label for="subscribe-checkbox" class="text-gray-700 cursor-pointer">Subscribe to newsletter</label>
+</div>
+<button type="submit" class="px-6 py-3 bg-primary text-white rounded-button hover:shadow-lg transition-all whitespace-nowrap">Send Message</button>
+</form>
+</div>
+<div class="md:w-1/2 flex flex-col justify-center">
+<div class="bg-[#F8F8F8] p-8 rounded-lg">
+<h3 class="text-2xl font-bold mb-6 font-['Playfair_Display']">Contact Information</h3>
+<div class="space-y-6">
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/20 rounded-full mr-4">
+<i class="ri-mail-line text-primary"></i>
+</div>
+<div>
+<p class="text-gray-600 mb-1">Email</p>
+<a href="mailto:bharathasoumya1@gmail.com" class="text-gray-800 hover:text-primary transition-colors">bharathasoumya1@gmail.com</a>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/20 rounded-full mr-4">
+<i class="ri-phone-line text-primary"></i>
+</div>
+<div>
+<p class="text-gray-600 mb-1">Phone</p>
+<a href="tel:+918919308815" class="text-gray-800 hover:text-primary transition-colors">+91 8919 308 815</a>
+</div>
+</div>
+<div class="flex items-start">
+<div class="w-10 h-10 flex items-center justify-center bg-primary/20 rounded-full mr-4">
+<i class="ri-map-pin-line text-primary"></i>
+</div>
+<div>
+<p class="text-gray-600 mb-1">Location</p>
+<p class="text-gray-800">Warangal, Telangana, India</p>
+</div>
+</div>
+</div>
+<div class="mt-10">
+<p class="text-gray-700 mb-4">Connect with me on social media:</p>
+<div class="flex space-x-4">
+<a href="https://github.com/Soumya-2004" class="w-10 h-10 flex items-center justify-center bg-primary/20 rounded-full social-icon">
+<i class="ri-github-line text-primary"></i>
+</a>
+<a href="https://www.linkedin.com/in/soumya-bharatha-a38633330/" class="w-10 h-10 flex items-center justify-center bg-primary/20 rounded-full social-icon">
+<i class="ri-linkedin-line text-primary"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-primary/20 rounded-full social-icon">
+<i class="ri-twitter-line text-primary"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-primary/20 rounded-full social-icon">
+<i class="ri-instagram-line text-primary"></i>
+</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Footer -->
+
+<footer class="bg-dark text-white py-10 relative">
+  <div class="container mx-auto px-6 grid grid-cols-3 items-center">
+    <div class="text-left">
+      <div class="text-3xl font-bold mb-1">BS</div>
+      <p class="text-sm text-gray-400">Turning Code into Impact</p>
+    </div>
+    <div class="flex justify-center">
+      <div class="opacity-20">
+        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_myejiggj.json" background="transparent" speed="1" style="width: 140px; height: 140px;" loop autoplay></lottie-player>
+      </div>
+    </div>
+    <div class="text-right">
+      <p class="text-sm text-gray-400">© 2025 Bharatha Soumya. All rights reserved.</p>
+      <a href="#home" class="mt-2 inline-flex items-center text-sm text-gray-400 hover:text-white transition">
+        <span class="mr-2">Back to Top</span>
+        <i class="ri-arrow-up-line"></i>
+      </a>
+      <div class="mt-2">
+        <a href="https://drive.google.com/file/d/1FgW37UE4l862pm6wzQzUfyXCsRdPrlR_/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="text-sm text-primary hover:underline">View Resume</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+
+<script>
+
+// Lottie animation in footer
+const footer = document.querySelector('footer');
+const lottie = document.createElement('div');
+lottie.innerHTML = `
+  <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_jtbfg2nb.json" background="transparent" speed="1" style="width: 150px; height: 150px; margin-top: 20px;" loop autoplay></lottie-player>
+`;
+footer.appendChild(lottie);
+</script>
+
+<!-- Scripts -->
+<script id="mobile-menu-script">
+document.addEventListener('DOMContentLoaded', function() {
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+menuToggle.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+});
+// Smooth scroll functionality
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const targetId = this.getAttribute('href');
+const targetElement = document.querySelector(targetId);
+if (targetElement) {
+const headerOffset = 80;
+const elementPosition = targetElement.getBoundingClientRect().top;
+const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+window.scrollTo({
+top: offsetPosition,
+behavior: 'smooth'
+});
+// Close mobile menu if open
+if (mobileMenu) {
+mobileMenu.classList.add('hidden');
+}
+}
+});
+});
+});
+</script>
+<script id="typing-animation-script">
+document.addEventListener('DOMContentLoaded', function() {
+const typingText = document.getElementById('typing-text');
+const text = "B.Tech CSE (AIML) | Problem Solver | Aspiring Developer";
+let i = 0;
+function typeWriter() {
+if (i < text.length) {
+typingText.textContent = text.substring(0, i + 1);
+i++;
+setTimeout(typeWriter, 100);
+}
+}
+typeWriter();
+});
+</script>
+<script id="skill-animation-script">
+document.addEventListener('DOMContentLoaded', function() {
+const progressBars = document.querySelectorAll('.skill-progress-bar');
+function animateProgressBars() {
+progressBars.forEach(bar => {
+const width = bar.style.width;
+bar.style.width = '0';
+setTimeout(() => {
+bar.style.width = width;
+}, 300);
+});
+}
+// Animate on page load
+animateProgressBars();
+// Animate when scrolled into view
+const skillSection = document.getElementById('skills');
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+animateProgressBars();
+}
+});
+}, { threshold: 0.1 });
+observer.observe(skillSection);
+});
+</script>
+<script id="form-interaction-script">
+document.addEventListener('DOMContentLoaded', function() {
+const contactForm = document.getElementById('contact-form');
+const subscribeCheckbox = document.getElementById('subscribe-checkbox');
+// Custom checkbox functionality
+subscribeCheckbox.addEventListener('click', function() {
+this.classList.toggle('checked');
+});
+// Form submission
+contactForm.addEventListener('submit', function(e) {
+e.preventDefault();
+const name = document.getElementById('name').value;
+const email = document.getElementById('email').value;
+const subject = document.getElementById('subject').value;
+const message = document.getElementById('message').value;
+const isSubscribed = subscribeCheckbox.classList.contains('checked');
+// Here you would normally send the form data to a server
+// For now, we'll just log it to the console
+console.log({
+name,
+email,
+subject,
+message,
+isSubscribed
+});
+// Show success message
+alert('Thank you for your message! I will get back to you soon.');
+// Reset form
+contactForm.reset();
+if (subscribeCheckbox.classList.contains('checked')) {
+subscribeCheckbox.classList.remove('checked');
+}
+});
+});
+</script>
+
+
+</body>
+</html>
